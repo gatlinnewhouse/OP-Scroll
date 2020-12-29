@@ -41,7 +41,7 @@ Public Class HomeController
         Dim client As HttpClient = Controllers.APIController.AuthorizeAPI()
 
 
-
+        ' get MAL api
         Using client
             Dim responseTask = client.GetAsync("users/@me")
             responseTask.Wait()
@@ -55,6 +55,23 @@ Public Class HomeController
 
         End Using
 
+
+        ' GET Youtube API this will be its own function. called by MAL api results return first video id 
+        'then in frontend youtubelink schema is https://www.youtube.com/watch?v=
+
+        Dim YoutubeClient As HttpClient = Controllers.YoutubeAPIController.AuthorizeAPI()
+
+        Using YoutubeClient
+            Dim responseTask = client.GetAsync("users/@me")
+            responseTask.Wait()
+
+            Dim result = responseTask.Result
+
+            If result.IsSuccessStatusCode Then
+                Dim readTask = result.Content.ReadAsStringAsync()
+
+            End If
+        End Using
 
 
         Return View()
