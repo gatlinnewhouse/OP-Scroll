@@ -1,6 +1,7 @@
 ﻿Imports System.Threading.Tasks
 Imports Newtonsoft.Json
 Imports System.Net.Http
+Imports System.Linq
 Imports System.Net.Http.Headers
 
 Public Class HomeController
@@ -76,6 +77,33 @@ Public Class HomeController
 
         Return View()
     End Function
+
+
+    Function SearchAnime(ByVal SearchKeyWord As String) As JsonResult
+
+        ' MAL API query here to return list... make contract 
+
+        Dim AnimeList As New List(Of String)
+        Dim QueryList = Nothing
+
+        ' fake List 
+        AnimeList.Add("Ano Hana")
+        AnimeList.Add("Agata sense")
+        AnimeList.Add("Ava")
+        AnimeList.Add("Love Hina")
+        AnimeList.Add("Lalalalala la")
+
+        ' make another key called value for the MAL anime ID
+        QueryList = (From items In AnimeList Where items.ToLower().StartsWith(SearchKeyWord.ToLower()) Select New With {
+            Key .lable = items.ToString()}).ToList()
+
+
+
+
+        Return Json(QueryList, JsonRequestBehavior.AllowGet)
+
+    End Function
+
 
     Function About() As ActionResult
         ViewData("Message") = "Your application description page."
