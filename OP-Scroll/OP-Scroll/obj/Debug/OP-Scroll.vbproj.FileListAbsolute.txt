@@ -83,3 +83,8 @@ C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\obj\Debug\OP-Scroll.vb
 C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\obj\Debug\OP-Scroll.dll
 C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\obj\Debug\OP-Scroll.xml
 C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\obj\Debug\OP-Scroll.pdb
+C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\MoreLinq.dll
+C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\System.ValueTuple.dll
+C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\MoreLinq.pdb
+C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\MoreLinq.xml
+C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\System.ValueTuple.xml
