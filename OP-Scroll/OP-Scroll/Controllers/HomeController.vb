@@ -62,7 +62,7 @@ Public Class HomeController
         Dim YoutubeClient As HttpClient = Controllers.YoutubeAPIController.AuthorizeAPI()
 
         Using YoutubeClient
-            Dim responseTask = client.GetAsync("users/@me")
+            Dim responseTask = YoutubeClient.GetAsync("")
             responseTask.Wait()
 
             Dim result = responseTask.Result
