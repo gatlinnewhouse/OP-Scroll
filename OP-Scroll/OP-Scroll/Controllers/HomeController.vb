@@ -41,7 +41,7 @@ Public Class HomeController
 
         Dim resultYT = Controllers.YoutubeAPIController.GetVideoURL("ano hana opening")
         Dim client As HttpClient = Controllers.APIController.AuthorizeAPI()
-
+        ViewData("YouTubeLink") = resultYT
 
         ' get MAL api
         Using client

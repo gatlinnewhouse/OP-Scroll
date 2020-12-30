@@ -14,6 +14,10 @@ End Code
     <select class="form-control"id="selector"></select>
 </div>
 
+<iframe width="420" height="315"
+        src="@ViewData("YouTubeLink")">
+</iframe>
+
 <script type="text/javascript">
 
     $("selector").change(function () {
