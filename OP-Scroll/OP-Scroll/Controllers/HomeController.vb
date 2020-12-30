@@ -39,6 +39,7 @@ Public Class HomeController
     <HttpGet>
     Function Index() As ActionResult
 
+        Dim resultYT = Controllers.YoutubeAPIController.GetVideoURL("ano hana opening")
         Dim client As HttpClient = Controllers.APIController.AuthorizeAPI()
 
 
@@ -60,19 +61,7 @@ Public Class HomeController
         ' GET Youtube API this will be its own function. called by MAL api results return first video id 
         'then in frontend youtubelink schema is https://www.youtube.com/watch?v=
 
-        Dim YoutubeClient As HttpClient = Controllers.YoutubeAPIController.AuthorizeAPI()
 
-        Using YoutubeClient
-            Dim responseTask = YoutubeClient.GetAsync("")
-            responseTask.Wait()
-
-            Dim result = responseTask.Result
-
-            If result.IsSuccessStatusCode Then
-                Dim readTask = result.Content.ReadAsStringAsync()
-
-            End If
-        End Using
 
 
         Return View()
