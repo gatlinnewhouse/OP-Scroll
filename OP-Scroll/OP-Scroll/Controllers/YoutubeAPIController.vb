@@ -30,7 +30,7 @@ Namespace Controllers
             Dim videoID As String = getBetween(jsonDrillDown.ToString(), "videoId", "},")
 
 
-            Dim videoURL As String = String.Format("https://www.youtube.com/watch?v={0}", videoID)
+            Dim videoURL As String = String.Format("https://www.youtube.com/embed/{0}", videoID)
             Console.WriteLine(videoURL)
             Return videoURL
         End Function
