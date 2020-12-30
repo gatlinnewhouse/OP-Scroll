@@ -2,21 +2,21 @@
     ViewData("Title") = "Home Page"
 End Code
 
-<div class="jumbotron">
+<div class="logo">
     <h1>OP-Scroll</h1>
-    <p class="lead">OP-Scroll</p>
-
 </div>
 
-<div class="row">
-    <input type="text" id="SearchAnime" onkeyup="SearchAnime();" />
-    <button class="btn-default"></button>
-    <select class="form-control"id="selector"></select>
+<div class="search">
+    <input class="search-form" type="text" id="SearchAnime" onkeyup="SearchAnime();" />
+    <button class="search-button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    <select class="search-autocomplete" id="selector"></select>
 </div>
 
-<iframe width="420" height="315"
+<div class="video-view">
+    <iframe style="position: absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;height: 100%;"
         src="@ViewData("YouTubeLink")">
-</iframe>
+    </iframe>
+</div>
 
 <script type="text/javascript">
 

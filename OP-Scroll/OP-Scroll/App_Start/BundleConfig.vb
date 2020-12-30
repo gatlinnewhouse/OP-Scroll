@@ -20,7 +20,7 @@ Public Module BundleConfig
 
         bundles.Add(New StyleBundle("~/Content/css").Include(
                   "~/Content/bootstrap.css",
-                  "~/Content/site.css"))
+                  "~/Content/Site.css"))
     End Sub
 End Module
 
