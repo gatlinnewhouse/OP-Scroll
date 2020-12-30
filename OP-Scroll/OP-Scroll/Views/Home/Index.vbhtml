@@ -38,8 +38,8 @@ End Code
 
                 $.each(data, function (index, data) {
                     DisplayDropdown.append($('<option/>', {
-                        value: data.lable,
-                        text: data.lable
+                        value: data,
+                        text: data
 
                     }));
                 });
