@@ -22,3 +22,33 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.logo {
+    width: max-content;
+    margin: auto;
+}
+
+.search {
+    width: max-content;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height: 2.5em;
+}
+
+.search-form {
+    padding: 5px;
+    height: inherit;
+}
+
+.search-button {
+    height: inherit;
+}
+
+.video-view {
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    padding-top: 56.25%;
+    margin: auto;
+}
