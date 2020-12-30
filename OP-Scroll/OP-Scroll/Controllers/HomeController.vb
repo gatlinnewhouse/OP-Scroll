@@ -4,6 +4,7 @@ Imports System.Net.Http
 Imports System.Linq
 Imports System.Net.Http.Headers
 Imports System.Net
+Imports Newtonsoft.Json.Linq
 
 Public Class HomeController
     Inherits System.Web.Mvc.Controller
@@ -30,6 +31,7 @@ Public Class HomeController
 
 
 
+
     Function SearchAnime(ByVal SearchKeyWord As String) As JsonResult
 
         ' MAL API query here to return list... make contract 
@@ -41,20 +43,44 @@ Public Class HomeController
         If QueryString.Length > 2 Then
             Try
                 Dim client As HttpClient = Controllers.APIController.AuthorizeAPI()
+
                 Using client
                     Dim responseTask = client.GetAsync(QueryString)
                     responseTask.Wait()
 
                     Dim result = responseTask.Result
-
+                    Dim JsonDrillDown = Nothing
                     If result.IsSuccessStatusCode Then
-                        Dim readTask = result.Content.ReadAsStringAsync().ToString()
+                        Dim readTask = result.Content.ReadAsStringAsync().Result
 
 
 
-                        Dim jsonResulttodict = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(readTask)
+                        Dim lsObj = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(readTask)
 
+                        For Each obj In lsObj
+                            If obj.Key = "data" Then
+
+                                Dim data As String = obj.Value.ToString()
+                                Dim dilimit As String() = {"node"}
+                                Dim pieces As String() = data.Split(dilimit, StringSplitOptions.None)
+
+                                For Each piece In pieces
+                                    Dim AddToList = Controllers.YoutubeAPIController.getBetween(piece, "title", "main_picture")
+                                    AnimeList.Add(AddToList)
+                                Next
+
+
+                            End If
+
+
+                        Next
+                        Dim count = AnimeList.Count
+
+                        Return Json(AnimeList, JsonRequestBehavior.AllowGet)
+                    Else
+                        Return Nothing
                     End If
+
 
                 End Using
             Catch ex As Exception
