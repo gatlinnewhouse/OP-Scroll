@@ -12,7 +12,7 @@ Public Class HomeController
 
     <HttpGet>
     Function Index() As ActionResult
-
+        Controllers.MalScrapeController.GetSongs()
         Dim resultYT = Controllers.YoutubeAPIController.GetVideoURL("ano hana opening")
         Dim client As HttpClient = Controllers.APIController.AuthorizeAPI()
         ViewData("YouTubeLink") = resultYT

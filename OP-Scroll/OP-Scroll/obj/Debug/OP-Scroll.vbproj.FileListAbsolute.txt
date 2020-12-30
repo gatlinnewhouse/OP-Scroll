@@ -88,3 +88,6 @@ C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\System.ValueTuple.
 C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\MoreLinq.pdb
 C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\MoreLinq.xml
 C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\System.ValueTuple.xml
+C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\HtmlAgilityPack.dll
+C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\HtmlAgilityPack.pdb
+C:\Users\anime\source\repos\OP-Scroll\OP-Scroll\OP-Scroll\bin\HtmlAgilityPack.xml
