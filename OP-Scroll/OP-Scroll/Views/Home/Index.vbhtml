@@ -20,8 +20,8 @@ End Code
 
 <script type="text/javascript">
 
-    $("selector").change(function () {
-        $("selector").attr('size', 1);
+    $("#selector").change(function () {
+        $("#selector").attr('size', 1);
     });
 
     function SearchAnime() {
