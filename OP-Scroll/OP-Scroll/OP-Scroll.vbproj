@@ -169,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\APIController.vb" />
     <Compile Include="Controllers\MalScrapeController.vb" />
+    <Compile Include="Controllers\SpotifyAPIController.vb" />
     <Compile Include="Controllers\YoutubeAPIController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,6 +263,7 @@
     <Folder Include="Models\" />
     <Folder Include="Views\API\" />
     <Folder Include="Views\MalScrape\" />
+    <Folder Include="Views\SpotifyAPI\" />
     <Folder Include="Views\YoutubeAPI\" />
   </ItemGroup>
   <PropertyGroup>
