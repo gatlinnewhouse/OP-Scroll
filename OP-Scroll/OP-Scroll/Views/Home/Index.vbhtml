@@ -18,9 +18,25 @@ End Code
 </div>
 
 <div class="video-view">
-    <iframe style="position: absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;height: 100%;"
-        src="@ViewData("YouTubeLink")">
-    </iframe>
+    <h2>Opening songs:</h2>
+    @*@For Each item In ViewBag.OpeningYoutubeLinks
+        @<iframe 
+                 src="@item">
+        </iframe>
+
+
+    Next*@
+
+    <h2>Ending songs:</h2>
+
+    @*@For Each item In ViewBag.EndingYoutubeLinks
+        @<iframe 
+                 src="@item">
+        </iframe>
+
+
+    Next*@
+
 </div>
 
 <!-- sample spotify embed -->

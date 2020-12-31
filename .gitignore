@@ -360,3 +360,8 @@ OP-Scroll/OP-Scroll/bin/OP-Scroll.dll
 OP-Scroll/OP-Scroll/bin/OP-Scroll.pdb
 OP-Scroll/OP-Scroll/obj/Debug/OP-Scroll.pdb
 OP-Scroll/OP-Scroll/obj/Debug/OP-Scroll.vbprojAssemblyReference.cache
+OP-Scroll/OP-Scroll/bin/OP-Scroll.dll
+OP-Scroll/OP-Scroll/bin/OP-Scroll.pdb
+*.cache
+*.dll
+*.pdb
