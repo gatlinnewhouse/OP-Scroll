@@ -356,3 +356,7 @@ obj/
 .vscode/
 OP-Scroll/.vs
 #OP-Scroll/packages
+OP-Scroll/OP-Scroll/bin/OP-Scroll.dll
+OP-Scroll/OP-Scroll/bin/OP-Scroll.pdb
+OP-Scroll/OP-Scroll/obj/Debug/OP-Scroll.pdb
+OP-Scroll/OP-Scroll/obj/Debug/OP-Scroll.vbprojAssemblyReference.cache

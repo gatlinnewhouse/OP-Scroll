@@ -13,9 +13,9 @@ Public Class HomeController
     <HttpGet>
     Function Index() As ActionResult
         Controllers.MalScrapeController.GetSongs()
-        Dim resultYT = Controllers.YoutubeAPIController.GetVideoURL("ano hana opening")
-        Dim client As HttpClient = Controllers.APIController.AuthorizeAPI()
-        ViewData("YouTubeLink") = resultYT
+        'Dim resultYT = Controllers.YoutubeAPIController.GetVideoURL("ano hana opening")
+        'Dim client As HttpClient = Controllers.APIController.AuthorizeAPI()
+        'ViewData("YouTubeLink") = resultYT
 
         ' get MAL api
 
@@ -75,7 +75,8 @@ Public Class HomeController
 
                         Next
                         Dim count = AnimeList.Count
-
+                        ' returns an empty item first, remove it so search suggestions do now show empty item
+                        AnimeList.RemoveAt(0)
                         Return Json(AnimeList, JsonRequestBehavior.AllowGet)
                     Else
                         Return Nothing
