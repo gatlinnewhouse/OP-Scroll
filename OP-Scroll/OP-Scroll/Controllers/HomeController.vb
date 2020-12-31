@@ -1,4 +1,4 @@
-﻿Imports System.Threading.Tasks
+Imports System.Threading.Tasks
 Imports Newtonsoft.Json
 Imports System.Net.Http
 Imports System.Linq
@@ -12,7 +12,46 @@ Public Class HomeController
 
     <HttpGet>
     Function Index() As ActionResult
-        Controllers.MalScrapeController.GetSongs()
+        ' GetSpotifyLinks()
+        Controllers.MalScrapeController.GetSongs(5114)
+
+
+
+        'Dim YouTubeLinks As New List(Of String)
+        'Dim OpeningYoutubeLinks As New List(Of String)
+        'Dim EndingYoutubeLinks As New List(Of String)
+        'Dim i = 0
+        'Dim ED_Start As Integer = Nothing
+
+        'YouTubeLinks = GetYoutubeLinks()
+
+        'If Not YouTubeLinks Is Nothing Then
+
+        '    For Each song In YouTubeLinks
+
+        '        If song = "EDS" Then
+        '            ED_Start = i
+        '        End If
+        '        i = i + 1
+        '    Next
+
+        '    For j As Integer = 0 To ED_Start - 1
+        '        OpeningYoutubeLinks.Add(YouTubeLinks(j))
+
+        '    Next
+
+        '    For k As Integer = ED_Start + 1 To YouTubeLinks.Count - 1
+        '        EndingYoutubeLinks.Add(YouTubeLinks(k))
+        '    Next
+        '    ' now can access lists in front end 
+        '    ViewBag.OpeningYoutubeLinks = OpeningYoutubeLinks
+        '    ViewBag.EndingYoutubeLinks = EndingYoutubeLinks
+
+        'End If
+
+
+
+
         'Dim resultYT = Controllers.YoutubeAPIController.GetVideoURL("ano hana opening")
         'Dim client As HttpClient = Controllers.APIController.AuthorizeAPI()
         'ViewData("YouTubeLink") = resultYT
@@ -28,8 +67,109 @@ Public Class HomeController
 
         Return View()
     End Function
+    Function GetSpotifyLinks(Optional ByVal song As String = "Roadhouse Blues")
+        Dim client As HttpClient = Controllers.SpotifyAPIController.GetSpotifyClient()
+        Dim QueryString As String ="search?type=track&limit=1&q=" & song
+        Using client
+            Dim responseTask = client.GetAsync(QueryString)
+            responseTask.Wait()
+
+            Dim result = responseTask.Result
+            Dim JsonDrillDown = Nothing
+            If result.IsSuccessStatusCode Then
+                Dim readTask = result.Content.ReadAsStringAsync().Result
 
 
+
+                Dim lsObj = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(readTask)
+
+
+
+
+
+                Dim data As String = readTask.ToString()
+
+                Dim dilimit As String() = {"track"}
+                Dim pieces As String() = data.Split(dilimit, StringSplitOptions.None)
+                Dim SongID = Nothing
+
+                For Each piece In pieces
+                    If piece.StartsWith("/") Then
+                        SongID = Controllers.YoutubeAPIController.getBetween(piece, "/", """"c)
+                    End If
+                    Console.WriteLine(piece)
+                Next
+
+
+
+
+
+                'For Each item In AnimeList
+                '    Console.WriteLine(item)
+                'Next
+
+                'AnimeList.RemoveAt(0)
+                'Return Json(AnimeList, JsonRequestBehavior.AllowGet)
+            Else
+                Return Nothing
+            End If
+
+
+        End Using
+    End Function
+    Function GetYoutubeLinks(Optional ByVal SelectedAnimeID As Integer = 5114)
+
+        ' Getting lists of OPS and EDS for searched Anime 
+        Dim SongList As New List(Of String)
+        Dim OpeningSongs As New List(Of String)
+        Dim EndingSongs As New List(Of String)
+        Dim YouTubeLinks As New List(Of String)
+        Dim i = 0
+        Dim ED_Start As Integer = Nothing
+        SongList = Controllers.MalScrapeController.GetSongs(SelectedAnimeID)
+
+        For Each song In SongList
+
+            If song = "EDS" Then
+                ED_Start = i
+            End If
+            i = i + 1
+        Next
+
+        For j As Integer = 0 To ED_Start - 1
+            OpeningSongs.Add(SongList(j))
+
+        Next
+
+        For k As Integer = ED_Start + 1 To SongList.Count - 1
+            EndingSongs.Add(SongList(k))
+        Next
+        '''''''''''''''''''''''''''''''''''''''''''''
+        Dim a = OpeningSongs.Count
+        Dim b = EndingSongs.Count
+        If Not OpeningSongs Is Nothing Then
+            For Each song In OpeningSongs
+                YouTubeLinks.Add(Controllers.YoutubeAPIController.GetVideoURL(song))
+                Console.WriteLine(song)
+            Next
+        End If
+
+        If Not EndingSongs Is Nothing Then
+            YouTubeLinks.Add("EDS")
+            For Each song In EndingSongs
+                Console.WriteLine(song)
+                YouTubeLinks.Add(Controllers.YoutubeAPIController.GetVideoURL(song))
+            Next
+        End If
+
+
+
+        If Not YouTubeLinks Is Nothing Then
+            Return YouTubeLinks
+        Else
+            Return Nothing
+        End If
+    End Function
 
 
     Function SearchAnime(ByVal SearchKeyWord As String) As JsonResult
@@ -74,8 +214,10 @@ Public Class HomeController
 
 
                         Next
-                        Dim count = AnimeList.Count
-                        ' returns an empty item first, remove it so search suggestions do now show empty item
+                        For Each item In AnimeList
+                            Console.WriteLine(item)
+                        Next
+
                         AnimeList.RemoveAt(0)
                         Return Json(AnimeList, JsonRequestBehavior.AllowGet)
                     Else

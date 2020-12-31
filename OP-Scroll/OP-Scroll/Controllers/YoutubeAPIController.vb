@@ -1,4 +1,4 @@
-﻿Imports System.Net.Http
+Imports System.Net.Http
 Imports System.Web.Mvc
 Imports System.Text
 Imports Newtonsoft.Json
@@ -13,7 +13,23 @@ Namespace Controllers
 
 
         Public Shared Function GetVideoURL(ByVal query As String)
-            Dim request As String = String.Format("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q={0}&key=AIzaSyAZd__osOvqyIU-Pv59ZyPYVFU4mjJfS1c", query)
+            Dim index = query.IndexOf("(ep")
+
+            Dim newquery = Nothing
+
+            If index > 0 Then
+                newquery = query.Substring(0, index)
+
+            End If
+
+            Dim index2 = newquery.IndexOf("#")
+
+            newquery = newquery.Substring(index2 + 3)
+
+
+            Dim output As String = query.Substring(query.IndexOf(")"c) + 1)
+
+            Dim request As String = String.Format("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q={0}&key=AIzaSyABdOQV0yCPBenzbJiKC6tWVmqb7jHliqM", HttpUtility.UrlEncode(newquery))
             Dim webClient As New System.Net.WebClient
             Dim result As String = webClient.DownloadString(request)
 
@@ -31,7 +47,7 @@ Namespace Controllers
 
 
             Dim videoURL As String = String.Format("https://www.youtube.com/embed/{0}", videoID)
-            Console.WriteLine(videoURL)
+
             Return videoURL
         End Function
 
@@ -51,7 +67,6 @@ Namespace Controllers
         End Function
 
     End Class
-
 
 
 
