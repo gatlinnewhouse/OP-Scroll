@@ -1,4 +1,4 @@
-﻿Imports System.Net.Http
+Imports System.Net.Http
 Imports System.Web.Mvc
 Imports System.Text
 Imports Newtonsoft.Json
@@ -67,7 +67,6 @@ Namespace Controllers
         End Function
 
     End Class
-
 
 
 

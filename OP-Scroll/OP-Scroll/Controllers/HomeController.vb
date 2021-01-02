@@ -1,4 +1,4 @@
-﻿Imports System.Threading.Tasks
+Imports System.Threading.Tasks
 Imports Newtonsoft.Json
 Imports System.Net.Http
 Imports System.Linq
