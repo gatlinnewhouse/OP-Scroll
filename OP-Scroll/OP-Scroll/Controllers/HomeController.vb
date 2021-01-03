@@ -172,11 +172,14 @@ Public Class HomeController
     End Function
 
 
-    Function SearchAnime(ByVal SearchKeyWord As String) As JsonResult
+    Function SearchAnime(ByVal SearchKeyWord As String, ByVal SearchImage As Boolean) As JsonResult
 
         ' MAL API query here to return list... make contract 
+        Dim AnimePictureList As New List(Of String)
+        Dim Anime_list = New Dictionary(Of String, List(Of String))()
+        Dim animelist = New Dictionary(Of String, Integer)
 
-        Dim AnimeList As New List(Of String)
+
         Dim QueryList = Nothing
         Dim QueryString As String = "anime?q=" & SearchKeyWord.ToString() & "&limit=4"
 
@@ -203,23 +206,40 @@ Public Class HomeController
                                 Dim data As String = obj.Value.ToString()
                                 Dim dilimit As String() = {"node"}
                                 Dim pieces As String() = data.Split(dilimit, StringSplitOptions.None)
+                                If Not SearchImage Then
+                                    For Each piece In pieces
+                                        Dim AnimeTitle = Controllers.YoutubeAPIController.getBetween(piece, "title", "main_picture")
+                                        Dim AnimeID = CInt(Controllers.YoutubeAPIController.getBetween(piece, "id", "title"))
 
-                                For Each piece In pieces
-                                    Dim AddToList = Controllers.YoutubeAPIController.getBetween(piece, "title", "main_picture")
-                                    AnimeList.Add(AddToList)
-                                Next
+                                        If Not AnimeTitle Is Nothing Then
+                                            animelist.Add(AnimeTitle, AnimeID)
+                                        End If
+
+                                    Next
+                                Else
+                                    For Each piece In pieces
+
+                                        Dim AnimeID = CInt(Controllers.YoutubeAPIController.getBetween(piece, "id", "title"))
+                                        Dim Picture = Controllers.YoutubeAPIController.getBetween(piece, "medium", ",")
+                                        If Not Picture Is Nothing Then
+                                            animelist.Add(Picture, AnimeID)
+                                        End If
+
+                                    Next
+                                End If
+
 
 
                             End If
 
 
                         Next
-                        For Each item In AnimeList
-                            Console.WriteLine(item)
-                        Next
 
-                        AnimeList.RemoveAt(0)
-                        Return Json(AnimeList, JsonRequestBehavior.AllowGet)
+
+
+
+
+                        Return Json(animelist, JsonRequestBehavior.AllowGet)
                     Else
                         Return Nothing
                     End If
