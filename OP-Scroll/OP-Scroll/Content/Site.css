@@ -67,8 +67,14 @@ textarea {
     padding: 0;
     opacity: 0;
     pointer-events: none;
-    max-height: 280px;
+    max-height: max-content; /* this is totally fine, vs dumb */
     overflow-y: auto;
+}
+
+.Anime_img {
+    height: 100%;
+    float: left;
+    margin-right: 20px;
 }
 
 .search-input.active .autocom-box {
@@ -80,14 +86,16 @@ textarea {
 .autocom-box li {
     list-style: none;
     padding: 8px 12px;
-    display: none;
+    /*display: none;*/
     width: 100%;
     cursor: default;
     border-radius: 3px;
+    height: 105px;
 }
 
 .search-input.active .autocom-box li {
-    display: block;
+    display: flex;
+    align-items: center;
 }
 
 .autocom-box li:hover {

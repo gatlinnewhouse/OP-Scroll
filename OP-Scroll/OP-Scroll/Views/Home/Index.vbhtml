@@ -2,13 +2,6 @@
     ViewData("Title") = "Home Page"
 End Code
 
-<style>
-    .Anime_img {
-        height: 100px;
-        float: left;
-        margin-right: 20px;
-    }
-</style>
 <div class="logo">
     <h1>OP-Scroll</h1>
 </div>
@@ -92,7 +85,7 @@ End Code
 
                         $.each(data, function (key, val) {
 
-                            $("#" + id).append($('<img>', {
+                            $("#" + id).prepend($('<img>', {
                                 src: key,
                                 id: "img_" + val,
                                 class: "Anime_img"
