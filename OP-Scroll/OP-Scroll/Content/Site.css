@@ -9,6 +9,12 @@
     padding-right: 15px;
 }
 
+.container-fluid {
+    z-index: 10;
+    position: inherit;
+    width: 100%
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -28,17 +34,45 @@ textarea {
     margin: auto;
 }
 
+.navbar-fixed-top {
+    z-index: 15!important; /* override bootstrap */
+}
+
 .video-view {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap; /* IE10 */
     position: relative;
     overflow: hidden;
     width: 90%;
-    padding-top: 56.25%;
     margin: auto;
 }
 
+/* Responsive layout - makes a two column-layout */
+.op-categories {
+    -ms-flex: 50%; /* IE10 */
+    flex: 50%;
+    max-width: 50%;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .op-categories {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+/* TODO: Responsive Search Bar layout */
+/* or a responsive logo or home link */
+
 .wrapper {
-    max-width: 450px;
-    margin: 2em auto;
+    max-width: 75%;
+    margin: 0.5em 0.2em;
+    float: right;
+    width: 100%;
 }
 
 .wrapper .search-input {
@@ -47,16 +81,17 @@ textarea {
     border-radius: 5px;
     position: relative;
     box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+    margin: auto 0px;
 }
 
 .search-input input {
-    height: 55px;
+    height: 2em;
     width: 100%;
     outline: none;
     border: none;
     border-radius: 5px;
     padding: 0 60px 0 20px;
-    font-size: 18px;
+    font-size: 1.25em;
 }
 
 .search-input.active input {
@@ -81,6 +116,7 @@ textarea {
     padding: 10px 8px;
     opacity: 1;
     pointer-events: auto;
+    border-top: 1px solid #282828;
 }
 
 .autocom-box li {
@@ -96,6 +132,7 @@ textarea {
 .search-input.active .autocom-box li {
     display: flex;
     align-items: center;
+    z-index: 20;
 }
 
 .autocom-box li:hover {
@@ -106,10 +143,10 @@ textarea {
     position: absolute;
     right: 0px;
     top: 0px;
-    height: 55px;
+    height: 1.75em;
     width: 55px;
     text-align: center;
-    line-height: 55px;
+    line-height: 2em;
     font-size: 20px;
     color: #8e4bff;
     cursor: pointer;

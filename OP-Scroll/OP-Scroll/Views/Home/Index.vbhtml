@@ -2,23 +2,8 @@
     ViewData("Title") = "Home Page"
 End Code
 
-<div class="logo">
-    <h1>OP-Scroll</h1>
-</div>
-
-<div class="wrapper">
-    <div class="search-input">
-        <a href="" target="_blank" hidden></a>
-        <input type="text" id="SearchAnime" placeholder="Type to search.." onkeyup="SearchAnime();">
-        <div id="autocom" class="autocom-box">
-
-        </div>
-        <div class="icon"><i class="glyphicon glyphicon-search" aria-hidden="true"></i></div>
-    </div>
-</div>
-
 <div class="video-view">
-    <h2>Opening songs:</h2>
+    <h2 class="op-categories">Opening songs:</h2>
     @*@For Each item In ViewBag.OpeningYoutubeLinks
         @<iframe 
                  src="@item">
@@ -27,7 +12,7 @@ End Code
 
     Next*@
 
-    <h2>Ending songs:</h2>
+    <h2 class="op-categories">Ending songs:</h2>
 
     @*@For Each item In ViewBag.EndingYoutubeLinks
         @<iframe 
@@ -40,7 +25,7 @@ End Code
 </div>
 
 <!-- sample spotify embed -->
-<iframe src="https://open.spotify.com/embed/track/51Z2IzJvLCnZaIpBV0IYRr" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<!-- <iframe src="https://open.spotify.com/embed/track/51Z2IzJvLCnZaIpBV0IYRr" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
 
 <script type="text/javascript">
     // getting all required elements
