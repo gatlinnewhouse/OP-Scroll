@@ -12,7 +12,9 @@
         <div class="container-fluid body-content">
             <div class="container">
                 <div class="navbar-header">
-                    @Html.ActionLink("OP Scroll", "Index", "Home", New With {.area = ""}, New With {.class = "navbar-brand"})
+                    <b>
+                        @Html.ActionLink("OP Scroll", "Index", "Home", New With {.area = ""}, New With {.class = "navbar-brand"})
+                    </b>
                 </div>
                 <div class="wrapper">
                     <div class="search-input">

@@ -12,7 +12,7 @@
 .container-fluid {
     z-index: 10;
     position: inherit;
-    width: 100%
+    width: 100%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -38,6 +38,26 @@ textarea {
     z-index: 15!important; /* override bootstrap */
 }
 
+.navbar-inverse {
+    background-color: #4b13aa !important;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+@media screen and (max-width: 800px) {
+    .navbar-inverse {
+        height: 7em !important;
+    }
+}
+
+
+.navbar-brand {
+    color: #fff!important;
+}
+
+.navbar-brand:hover {
+    color: #ceb1ff!important;
+}
+
 .video-view {
     display: -ms-flexbox; /* IE10 */
     display: flex;
@@ -47,6 +67,12 @@ textarea {
     overflow: hidden;
     width: 90%;
     margin: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .video-view {
+        margin-top: 3em!important;
+    }
 }
 
 /* Responsive layout - makes a two column-layout */
@@ -65,14 +91,20 @@ textarea {
     }
 }
 
-/* TODO: Responsive Search Bar layout */
-/* or a responsive logo or home link */
-
 .wrapper {
     max-width: 75%;
     margin: 0.5em 0.2em;
     float: right;
     width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+    .wrapper {
+        max-width: 100% !important;
+        margin: 0.5em 0.2em;
+        float: right;
+        width: 100%;
+    }
 }
 
 .wrapper .search-input {
